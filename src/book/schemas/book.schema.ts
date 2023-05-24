@@ -7,7 +7,6 @@ export enum Categoria {
     TECNOLOGIA = 'Tecnologia',
 }
 
-
 @Schema({
     timestamps: true
 })

@@ -2,8 +2,8 @@ import { IsString, IsEnum, IsInt } from "class-validator";
 import { Categoria } from "../schemas/book.schema";
 
 
-export class CreateBookDto {
-    
+export class UpdateBookDto {
+     
     @IsString()
     readonly nome: string;
 
