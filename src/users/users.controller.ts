@@ -12,7 +12,7 @@ export class UsersController {
       @Body()
       user: CreateUserDto
     ): Promise<User> {
-      return this.userService.create(user)
+      return this.userService.createUser(user)
     }
 
     @Get()

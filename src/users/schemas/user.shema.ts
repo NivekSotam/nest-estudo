@@ -4,8 +4,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
     timestamps: true
 })
 
-export class User {
-    
+export class User {    
     @Prop()
     email: string;
 

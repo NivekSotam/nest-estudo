@@ -1,17 +1,27 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import * as bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
+import { User } from 'src/users/schemas/user.shema';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class AuthService {
-  // constructor(private usersService: UsersService) {}
+  constructor(
+    @InjectModel(User.name)
+    private userModel: mongoose.Model<User>,
+  ) { }
 
-  // async signIn(username: string, pass: string): Promise<any> {
-  //   const user = await this.usersService.findOne(username);
-  //   if (user?.password !== pass) {
-  //     throw new UnauthorizedException();
-  //   }
-  //   const { password, ...result } = user;
-    
-  //   return result;
-  // }
+  async loginUser(email: string, password: string): Promise<string> {
+    const user = await this.userModel.findOne({ email });
+
+    if (user) {
+      const match = await bcrypt.compare(password, user.password);
+
+      if (match) return 'Credentials are correct!';
+
+      return 'Invalid Credentials!';
+    }
+
+    return 'Invalid Invalid!';
+  }
 }
