@@ -1,7 +1,6 @@
 import { IsString, IsEnum, IsInt } from "class-validator";
 import { Categoria } from "../schemas/book.schema";
 
-
 export class CreateBookDto {
     
     @IsString()
