@@ -41,5 +41,13 @@ export class UsersService {
     return user;
   }
 
+  async deleteUser(id: string): Promise<User>{
+    if (!isValidObjectId(id)) {
+      throw new BadRequestException('Not a valid object Id');
+    }
+    
+    return await this.userModel.findByIdAndDelete(id);
+  }
+
   
 }
