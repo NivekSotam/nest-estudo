@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Delete, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './schemas/user.shema';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -27,7 +28,9 @@ export class UsersController {
     ): Promise<User> {
       return this.userService.findOne(id);
     }
-    
+
+
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async deleteOneUser(
         @Param('id')
