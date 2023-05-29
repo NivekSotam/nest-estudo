@@ -1,10 +1,10 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import { User } from 'src/users/schemas/user.shema';
 import { InjectModel } from '@nestjs/mongoose';
-import { JwtModule, JwtService } from '@nestjs/jwt';
-import { SignInDto } from './dto/signin.dto';
+import { JwtService } from '@nestjs/jwt';
+
 
 @Injectable()
 export class AuthService {
@@ -22,9 +22,9 @@ export class AuthService {
       throw new BadRequestException();
     }
 
-    const verificaSenha = await bcrypt.compare(password, user.password);
+    const verifyUserPassword = await bcrypt.compare(password, user.password);
 
-    if (!verificaSenha) {
+    if (!verifyUserPassword) {
       throw new BadRequestException();
     }
 

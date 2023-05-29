@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt'
 
 @Module({
+
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
@@ -27,4 +28,5 @@ import { JwtModule } from '@nestjs/jwt'
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule { }
