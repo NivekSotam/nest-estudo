@@ -5,6 +5,7 @@ import { AppModule } from './../src/app.module';
 
 // conflito
 
+// testando a branch ver ser funfa   
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
